@@ -3,20 +3,9 @@
 // Modules
 var express = require('express');
 var app = express();
-var jsonparser = require('body-barser');
+var jsonParser = require('body-parser').json;
 
-
-// Middleware
-app.use(function(req, res, next) {
-    console.log("First piece of middleware");
-    next();
-});
-
-app.use("/different/:id", function (req, res, next) {
-    console.log("Second piece of middleware, ID:", req.params.id);
-    next();
-});
-
+app.use(jsonParser());
 
 // Create application server
 var port = process.env.PORT || 3000;
