@@ -4,7 +4,7 @@ var express = require("express");
 var router = express.Router();
 var Question = require("./models").Questions;
 
-router.params("qID", function(req, res, next, id) {
+router.param("qID", function(req, res, next, id) {
     Question.findById(id, function(err, doc) {
         if(err) return next(err);
         if(!doc) {
@@ -17,7 +17,7 @@ router.params("qID", function(req, res, next, id) {
     });
 });
 
-router.params("aID", function(req, res, next, id) {
+router.param("aID", function(req, res, next, id) {
     req.answer = req.question.answers.id(id);
     if (!req.answer) {
         err = new Error("Not Found");
